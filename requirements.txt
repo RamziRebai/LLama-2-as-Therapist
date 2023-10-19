@@ -1,0 +1,17 @@
+fastapi
+uvicorn[standard]
+
+transformers==4.32.0
+bitsandbytes==0.41.1
+bertopic==0.15.0
+accelerate==0.23.0
+trl==0.7.2
+xformers==0.0.22.post4
+adjustText==0.8
+peft==0.5.0
+torch==2.1.0
+sacremoses
+
+black
+pylint
+pytest
