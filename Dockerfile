@@ -1,11 +1,15 @@
-FROM python:3.10.12-slim-buster as build-env
-COPY ./app /app
+FROM python:3.10.12
+
+COPY ./requirements.txt /app/requirements.txt
+
 WORKDIR /app
 
-FROM gcr.io/distroless/python3:fastapi1
-COPY --from=build-env /app /app
-WORKDIR /app
-RUN pip install --no-cache-dir -r requirements.txt && \
-        rm requirements.txt
+RUN pip install -r requirements.txt
+
+COPY app/* /app
+
 EXPOSE 8000
-CMD ["uvivorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+ENTRYPOINT [ "uvicorn" ]
+
+CMD [ "--host", "0.0.0.0", "main:app" ]
